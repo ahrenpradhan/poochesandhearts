@@ -1,21 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useState, useEffect } from "react";
+import { Provider } from "react-redux";
+
+import RootNav from "./navigation/RootNav";
+import { store } from "./appRedux/store";
 
 export default function App() {
-  console.log('App executed at', new Date().toLocaleTimeString());
-  return (
-    <View style={styles.container}>
-      <Text>We can finally start working on the app</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+  console.log("App executed at ", new Date().toUTCString());
+  const [state, setState] = useState(false);
+  useEffect(() => {
+    setState(true);
+  }, [state]);
+  return <Provider store={store}>{state && <RootNav />}</Provider>;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
