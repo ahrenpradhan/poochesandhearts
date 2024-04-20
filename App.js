@@ -5,7 +5,7 @@ import RootNav from "./navigation/RootNav";
 import { store } from "./appRedux/store";
 
 export default function App() {
-  console.log("App executed at ", new Date().toUTCString());
+  console.log("App executed at :", new Date().toUTCString());
   const [state, setState] = useState(false);
   useEffect(() => {
     setState(true);
