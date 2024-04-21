@@ -64,7 +64,7 @@ const LoggedInNav = () => {
     );
 };
 const RootNav = () => {
-    const logged_in = useSelector((state) => state.auth.logged_in);
+    const { logged_in } = useSelector((state) => state.auth);
     return (
         <SafeAreaProvider
             initialMetrics={initialWindowMetrics}

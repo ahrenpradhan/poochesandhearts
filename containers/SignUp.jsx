@@ -1,11 +1,28 @@
 import {Button, Pressable, StyleSheet, Text, View} from "react-native";
-import {TextInput} from "../components/units/index.";
+import {TextInput} from "../components/units/index";
+
+import useUserApi from "../hooks/useUserApi";
 
 const SignUpScreen = ({navigation}) => {
-    const handleLocal = {
-        signup: async () => {},
-        routeToSignInScreen: () => navigation.replace("logged_out", {screen: "sign_in"}),
-    }
+    const {signUp:api_signUp} = useUserApi();
+
+    const handleSignUp  = async () => {
+        const data = {
+            name: 'Ahren Pradhan',
+            email: 'ahrenpradhan@gmail.com',
+            phone: '9560490133',
+            password: '123456',
+            confirmPassword: '123456'
+        }
+        const {result, error, status} = await api_signUp(data);
+        if(status){
+            console.log('Sign up successful')
+            handleRouteToSignInScreen();
+        }
+        console.log(result, error)
+    };
+    const handleRouteToSignInScreen= () => navigation.replace("logged_out", {screen: "sign_in"})
+    
     return (
         <View style={styles.container}>
             <Text>Sign Up screen</Text>
@@ -18,12 +35,12 @@ const SignUpScreen = ({navigation}) => {
                 <Button
                     title="Sign Up"
                     style={styles.signupBtn}
-                    onPress={handleLocal.signup}
+                    onPress={handleSignUp}
                 />
             </View>
             <View style={styles.signinWrapper}>
                 <Text>Already have an account. </Text>
-                <Pressable onPress={handleLocal.routeToSignInScreen}>
+                <Pressable onPress={handleRouteToSignInScreen}>
                     <Text style={styles.signUpText}>Sign In</Text>
                 </Pressable>
             </View>

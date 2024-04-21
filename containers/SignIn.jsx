@@ -2,7 +2,7 @@ import {useDispatch} from "react-redux";
 import {Button,Pressable, StyleSheet, Text, View} from "react-native";
 
 import {login} from "../appRedux/features/auth/authSlice";
-import {TextInput} from "../components/units/index.";
+import {TextInput} from "../components/units/index";
 
 const SignInScreen = ({navigation}) => {
     const dispatch = useDispatch();
